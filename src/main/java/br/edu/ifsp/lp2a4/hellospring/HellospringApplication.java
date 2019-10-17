@@ -3,6 +3,8 @@ package br.edu.ifsp.lp2a4.hellospring;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.edu.ifsp.lp2a4.hellospring.entidades.Usuario;
+
 @SpringBootApplication
 public class HellospringApplication {
 

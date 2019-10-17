@@ -1,21 +1,30 @@
 package br.edu.ifsp.lp2a4.hellospring.entidades;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-//Esta classe está emulando um repositório de dados no modelo ActiveRecord
+import javax.validation.constraints.NotBlank;
+
+@Entity
 public class Usuario {
-			
-	private int id;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
+	
+	@NotBlank(message = "O nome é obrigatório!")
 	private String nome;
+	
+	@NotBlank(message = "O sobrenome é obrigatório!")
 	private String sobrenome;
 	
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 	
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -32,33 +41,12 @@ public class Usuario {
 		this.sobrenome = sobrenome;
 	}
 	
+	public Usuario() {
+		
+	}
+	
 	public Usuario(String nome, String sobrenome) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 	}
-	
-	public void salvar() {
-		if(this.id == 0) {
-			_usuarioSeq++;
-			this.setId(_usuarioSeq);
-			_UsuariosDict.put(_usuarioSeq, this);
-		}else {
-			_UsuariosDict.replace(this.getId(), this);
-		}
-	}
-	
-	public void remover() {
-		_UsuariosDict.remove(this.id);
-	}
-	
-	public static List<Usuario> Todos(){
-		return new ArrayList<Usuario>(_UsuariosDict.values());
-	}
-	
-	public static Usuario GetById(int id) {
-		return _UsuariosDict.get(id);
-	}
-	
-	private static HashMap<Integer, Usuario> _UsuariosDict = new HashMap<>();
-	private static int _usuarioSeq = 0;
 }
