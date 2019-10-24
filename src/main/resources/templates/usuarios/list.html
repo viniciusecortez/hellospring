@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div>
-		<h2>Users</h2>
+		<h2>Usuários</h2>
 		<table>
 			<thead>
 				<tr>
@@ -19,6 +19,7 @@
 				<tr th:each="usuario : ${usuarios}" >
 					<td th:text="${usuario.nome}"></td>
 					<td th:text="${usuario.sobrenome}"></td>
+					<td><a th:href="@{/usuarios/{id}/edit(id=${usuario.id})}">Editar</a></td> 
 				</tr>				
 			</tbody>
 		</table>
